@@ -2,128 +2,53 @@
 layout: default
 ---
 
-<script src="{{ '/js/esri/init.js' | prepend: site.baseurl }}"></script>
-
-<link rel="stylesheet" href="{{ '/css/esri/esri.css' | prepend: site.baseurl }}">
-<!-- <link rel="stylesheet" href="https://js.arcgis.com/3.16/esri/themes/calcite/dijit/calcite.css"> -->
-<!-- <link rel="stylesheet" type="text/css" href="{{ ''/css/esri/bootstrapmap.css' | prepend: site.baseurl }}"> -->
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ '/css/esri/init.css' | prepend: site.baseurl }}">
+<link rel="stylesheet" href="{{ '/css/esri/config.css' | prepend: site.baseurl }}">
 
-<style media="screen">
-.container-map {
-	position: relative;
-}
-#homeMap {
-	min-width: 100%;
-	min-height: 100%;
-}
-#map-overlays {
-	position: absolute;
-	top: 15px;
-	right: 15px;
-	margin-left: 60px;
-	width: 320px;
-	z-index: 50;
-}
+<script src="{{ '/js/esri/init.js' | prepend: site.baseurl }}"></script>
+<script src="{{ '/js/esri/config.js' | prepend: site.baseurl }}"></script>
 
-.panel-trigger:hover {
-	text-decoration: none;
-}
-
-.esriControlsBR { display: none; }
-
-.esriList {
-	/*-webkit-column-count: 2;
-	-moz-column-count: 2;
-	column-count: 2;*/
-}
-</style>
-
-<header class="container">
-	<div class="jumbotron">
+<header class="jumbotron">
+	<div class="container">
 		<h1>
 			Map Page
 		</h1>
 	</div>
-
+</header>
+<div class="container">
 	<p>
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	</p>
-</header>
-
-<div class="container container-map">
-	<section id="map-overlays">
-		<div class="panel-group panel-fixed panel-group-fixed" id="accordion" role="tablist" aria-multiselectable="true">
-			<div class="panel panel-default">
-				<a class="panel-trigger" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					<header class="panel-heading" role="tab" id="headingOne">
-						<!-- <h4 class="panel-title"> -->
-						<i class="fa fa-fw fa-map-marker"></i>
-						Select Map Overlays
-						<i class="fa fa-fw fa-chevron-down pull-right text-warning"></i>
-						<!-- </h4> -->
-					</header>
-				</a>
-				<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-
-					<!-- <div class="panel-body"> -->
-					<div id="layerListPane">
-						<div id="layerList"></div>
-					</div>
-					<!-- </div> -->
-
-				</div>
-			</div>
-		</div>
-	</section>
-	<div id="homeMap"></div>
 </div>
 
-<footer class="container">
-	<div class="jumbotron">
+
+<section class="container">
+	<div class="text-right" style="position: relative;">
+		<a id="map-overlays-trigger" data-toggle="collapse" data-parent="#accordion" href="#map-overlays" class="btn btn-sm btn-default">
+			<i class="fa fa-fw fa-map-marker"></i>
+			<span class="hidden-xs">Select</span> Map Overlays
+		</a>
+	</div>
+
+	<div id="container-map">
+		<div id="map-overlays" class="collapse">
+			<div id="layerListPane">
+				<div id="layerList"></div>
+			</div>
+		</div>
+
+		<div id="homeMap"></div>
+	</div>
+</section>
+
+
+<footer class="jumbotron">
+	<div class="container">
 		<h1>
 			Footer
 		</h1>
 	</div>
 </footer>
-
-
-
-<script>
-// var dojoConfig = { parseOnLoad: true };
-
-require([
-	"esri/arcgis/utils",
-	"esri/dijit/LayerList",
-	"esri/dijit/Search",
-	"dijit/layout/ContentPane",
-	"dojo/domReady!"
-], function(
-	arcgisUtils,
-	LayerList,
-	Search
-) {
-	arcgisUtils.createMap("35c7b90b6a194cb98d3187e4e54259e5", "homeMap").then(function(response){
-
-		response.map.enableScrollWheelZoom();
-		// response.map.disableScrollWheelZoom();
-
-		response.map.infoWindow.setTitle("Coordinates");
-
-		// var search = new Search({
-		// 	map: response.map
-		// }, "search");
-		// search.startup();
-
-		var layerList = new LayerList({
-			map: response.map,
-			layers: arcgisUtils.getLayerList(response)
-		},"layerList");
-		layerList.startup();
-
-	});
-});
-</script>
