@@ -14,7 +14,7 @@ Assumes Bootstrap files are applied.
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 ```
 
-Assumes FontAwesome is applied
+Assumes FontAwesome is applied.
 
 ```HTML
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
@@ -22,17 +22,17 @@ Assumes FontAwesome is applied
 
 ## Configuration
 
-Attach stylesheets and scripts
+Place stylesheets and scripts on page.
 
 ```HTML
-<link rel="stylesheet" href="{{ '/css/esri/init.css' | prepend: site.baseurl }}">
-<link rel="stylesheet" href="{{ '/css/esri/config.css' | prepend: site.baseurl }}">
+<link rel="stylesheet" href="/css/esri/init.css">
+<link rel="stylesheet" href="/css/esri/config.css">
 
-<script src="{{ '/js/esri/init.js' | prepend: site.baseurl }}"></script>
-<script src="{{ '/js/esri/config.js' | prepend: site.baseurl }}"></script>
+<script src="/js/esri/init.js"></script>
+<script src="/js/esri/config.js"></script>
 ```
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Place HTML on page.
 
 ```HTML
 <section class="container">
