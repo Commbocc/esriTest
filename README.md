@@ -44,7 +44,7 @@ Place HTML on page.
 
 ```HTML
 <section class="container">
-	<div class="text-right" style="position: relative;">
+	<div class="text-right">
 		<a id="map-overlays-trigger" data-toggle="collapse" data-parent="#accordion" href="#map-overlays" class="btn btn-sm btn-default">
 			<i class="fa fa-fw fa-map-marker"></i>
 			<span class="hidden-xs">Select</span> Map Overlays
