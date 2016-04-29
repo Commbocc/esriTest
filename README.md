@@ -33,11 +33,11 @@ Assumes FontAwesome is included.
 Place stylesheets and scripts on page.
 
 ```HTML
-<link rel="stylesheet" href="/css/esri/init.css">
-<link rel="stylesheet" href="/css/esri/config.css">
+<link rel="stylesheet" href="/css/init.css">
+<link rel="stylesheet" href="/css/config.css">
 
-<script src="/js/esri/init.js"></script>
-<script src="/js/esri/config.js"></script>
+<script src="/js/init.js"></script>
+<script src="/js/config.js"></script>
 ```
 
 Place HTML on page.
