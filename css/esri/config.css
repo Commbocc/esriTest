@@ -1,6 +1,29 @@
 #homeMap {
 	min-width: 100%;
 	min-height: 100%;
+	position: relative;
+}
+
+#homeMap text {
+	text-shadow: -2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000;
+}
+
+/*#homeMap text::before {
+content: '';
+display: inline-block;
+width: 15px;
+height: 15px;
+-moz-border-radius: 15px;
+-webkit-border-radius: 15px;
+border-radius: 15px;
+background-color: #f00;
+}*/
+
+#LocateButton {
+	position: absolute;
+	top: 80px;
+	left: 15px;
+	z-index: 40;
 }
 
 .esriLayerList .esriToggleButton {

@@ -1,56 +1,78 @@
 <!DOCTYPE html>
-<html dir="ltr">
-
+<html>
 <head>
-   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-   <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
-   <title>ArcGIS API for JavaScript | Basic Search</title>
-   <link rel="stylesheet" href="https://js.arcgis.com/3.16/esri/themes/calcite/dijit/calcite.css">
-   <link rel="stylesheet" href="https://js.arcgis.com/3.16/esri/themes/calcite/esri/esri.css">
-   <style>
-      html,
-      body,
-      #map {
-         height: 100%;
-         width: 100%;
-         margin: 0;
-         padding: 0;
-      }
-      #search {
-         display: block;
-         position: absolute;
-         z-index: 2;
-         top: 20px;
-         left: 74px;
-      }
-   </style>
-   <script src="https://js.arcgis.com/3.16/"></script>
-   <script>
-      require([
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-        "esri/map",
-        "esri/dijit/Search",
-        "dojo/domReady!"
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+	<title>Dynamically Create Map Service Layer List</title>
+	<link rel="stylesheet" href="https://js.arcgis.com/3.16/dijit/themes/claro/claro.css">
+	<link rel="stylesheet" href="https://js.arcgis.com/3.16/esri/css/esri.css">
 
-      ], function (Map, Search) {
-         var map = new Map("map", {
-            basemap: "gray",
-            center: [-120.435, 46.159], // lon, lat
-            zoom: 7
-         });
+	<script src="https://js.arcgis.com/3.16/"></script>
 
-         var search = new Search({
-            map: map
-         }, "search");
-         search.startup();
+	<script>
+	var layer, map, visible = [];
 
-      });
-   </script>
+	require([
+		"esri/map", "esri/layers/ArcGISDynamicMapServiceLayer",
+		"dojo/dom", "dojo/on", "dojo/query", "dojo/_base/array",
+		"dojo/domReady!"
+	], function(
+		Map, ArcGISDynamicMapServiceLayer,
+		dom, on, query, arrayUtils
+	) {
+
+		map = new Map("map", {
+			zoom: 10,
+			basemap: "gray"
+		});
+
+		layer = new ArcGISDynamicMapServiceLayer("https://maps.hillsboroughcounty.org/arcgis/rest/services/CoinMap/County_Webmap/MapServer");
+		// layer = new ArcGISDynamicMapServiceLayer("https://sampleserver6.arcgisonline.com/arcgis/rest/services/WorldTimeZones/MapServer");
+
+		layer.on("load", buildLayerList);
+
+		map.addLayer(layer);
+
+		function buildLayerList() {
+			var items = arrayUtils.map(layer.layerInfos, function(info, index) {
+				if (info.defaultVisibility) {
+					visible.push(info.id);
+				}
+				return "<input type='checkbox' class='list_item'" + (info.defaultVisibility ? "checked=checked" : "") + "' id='" + info.id + "'' /><label for='" + info.id + "'>" + info.name + "</label>";
+			});
+			var ll = dom.byId("layer_list");
+			ll.innerHTML = items.join(' ');
+			layer.setVisibleLayers(visible);
+			on(ll, "click", updateLayerVisibility);
+		}
+
+		function updateLayerVisibility() {
+			var inputs = query(".list_item");
+			var input;
+			visible = [];
+
+			arrayUtils.forEach(inputs, function(input) {
+				if (input.checked) {
+					visible.push(input.id);
+				}
+			});
+			//if there aren't any layers visible set the array to be -1
+			if (visible.length === 0) {
+				visible.push(-1);
+			}
+			layer.setVisibleLayers(visible);
+		}
+	});
+	</script>
 </head>
 
-<body class="calcite">
-   <div id="search"></div>
-   <div id="map"></div>
+<body>
+	This sample loads an ArcGISDynamicMapServiceLayer.<br />
+	It determines the layers in the map service and presents them as checkboxes that can be used to toggle their visibility.<br />
+	<br />
+	Layer List : <span id="layer_list"></span><br />
+	<br />
+	<div id="map" class="claro" style="width:600px; height:400px; border:1px solid #000;"></div>
 </body>
-
 </html>

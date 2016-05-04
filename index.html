@@ -2,9 +2,11 @@
 layout: default
 ---
 
+<!-- <link rel="stylesheet" href="https://js.arcgis.com/3.16/esri/css/esri.css"> -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{ '/css/esri/init.css' | prepend: site.baseurl }}">
 <link rel="stylesheet" href="{{ '/css/esri/config.css' | prepend: site.baseurl }}">
+<link rel="stylesheet" href="{{ '/css/esri/bootstrapmap.css' | prepend: site.baseurl }}">
 
 <script src="{{ '/js/esri/init.js' | prepend: site.baseurl }}"></script>
 <script src="{{ '/js/esri/config.js' | prepend: site.baseurl }}"></script>
@@ -19,9 +21,14 @@ layout: default
 <div class="container">
 	<p>
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	</p>
+
+	<ul id="theLayers">
+
+	</ul>
+
+	<div id="toggle" style="padding: 2px 2px;"></div>
+
 </div>
 
 
@@ -40,7 +47,9 @@ layout: default
 			</div>
 		</div>
 
-		<div id="homeMap"></div>
+		<div id="homeMap">
+			<div id="LocateButton"></div>
+		</div>
 	</div>
 </section>
 
