@@ -1,0 +1,151 @@
+---
+layout: default
+permalink: /mapbox
+---
+
+<style>
+
+body { margin:0; padding:0; }
+
+#mapContainer {
+	position: relative;
+	height: 400px;
+}
+
+#map { position: absolute; top:0; bottom:0; width:100%; }
+
+#btn-settings {
+	position: absolute;
+	top: 10px;
+	right:10px;
+	z-index: 1;
+}
+
+</style>
+
+<script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
+
+<link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet'>
+
+<!-- locate -->
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css' rel='stylesheet' />
+<!--[if lt IE 9]>
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.ie.css' rel='stylesheet' />
+<![endif]-->
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css' rel='stylesheet' />
+
+<!-- esri leaflet -->
+<script src='http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.4/esri-leaflet.js'></script>
+
+<header class="jumbotron">
+	<div class="container">
+		header
+	</div>
+</header>
+
+<div class="container">
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	<hr>
+</div>
+
+<div id="mapContainer">
+
+	<!-- Large modal -->
+	<button id="btn-settings" type="button" class="btn btn-xs btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">
+		<i class="fa fa-map-marker fa-fw"></i> Map Overlays
+	</button>
+
+	<div id='map'></div>
+</div>
+
+<footer class="jumbotron">
+	<div class="container">
+		footer
+	</div>
+</footer>
+
+<div id="modal-settings" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Map Settings</h4>
+			</div>
+			<nav id="nav-mapbox" class='nav-mapbox list-group'></nav>
+			<!-- <div class="modal-body"></div> -->
+		</div>
+	</div>
+</div>
+
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+
+<script src='http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.4/esri-leaflet.js'></script>
+
+<script type="text/javascript">
+
+L.mapbox.accessToken = 'pk.eyJ1Ijoia2ptYWdpYzEzIiwiYSI6ImNpZzlpMGo1OTBsd2R1OWtrZjVwcHF0YmgifQ.gk94RmwBZrH90QoP2HHQXA';
+
+var map = L.mapbox.map('map', 'mapbox.{%if page.basemap%}{{page.basemap}}{%else%}streets{%endif%}');
+// .addControl(L.mapbox.geocoderControl('mapbox.places'))
+// .addControl(L.mapbox.shareControl())
+
+L.control.locate().addTo(map);
+
+var layers = document.getElementById('nav-mapbox');
+
+function addFeatureLayer(layer, name, zIndex) {
+	layer
+	.addTo(map);
+	// .setZIndex(zIndex)
+
+	var link = document.createElement('a');
+	link.href = '#';
+	link.className = 'list-group-item';
+	link.innerHTML = '<i class="fa fa-check-square fa-fw"></i>&nbsp;' + name;
+
+	link.onclick = function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+
+		if (map.hasLayer(layer)) {
+			map.removeLayer(layer);
+			this.innerHTML = '<i class="fa fa-square fa-fw"></i>&nbsp;' + name;
+		} else {
+			map.addLayer(layer);
+			console.log(layer);
+			this.innerHTML = '<i class="fa fa-check-square fa-fw"></i>&nbsp;' + name;
+		}
+	};
+
+	layers.appendChild(link);
+}
+
+map.setView([27.988945, -82.507324], 10);
+
+
+var hospitals = L.esri.featureLayer(
+	'https://maps.hillsboroughcounty.org/arcgis/rest/services/CoinMap/County_Webmap/MapServer/0',
+	{
+		pointToLayer: function (esriFeature, latlng) {
+			return L.marker(latlng, {
+				icon: L.icon({
+					iconUrl: 'https://cdn4.iconfinder.com/data/icons/medical-14/512/7-512.png',
+					iconRetinaUrl: 'https://cdn4.iconfinder.com/data/icons/medical-14/512/7-512.png',
+					iconSize: [25, 25],
+					popupAnchor: [0, -15]
+				})
+			});
+		}
+	}
+);
+
+addFeatureLayer(hospitals, 'Hospitals', 1);
+
+var popupTemplate = "<h4>{NAME}</h4>{ADDRESS}";
+
+hospitals.bindPopup(function(e){
+	return L.Util.template(popupTemplate, e.properties)
+});
+
+</script>
