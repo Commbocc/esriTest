@@ -1,10 +1,10 @@
 # Hillsborough County Map
 
-ESRI map featured on the County's Homepage.
+Map featured on the County's Homepage.
 
-## Demo
+## Demos
 
-[Demo](http://commbocc.github.io/esriTest/)
+[Demo](http://commbocc.github.io/esriTest/) | [jsFiddle](https://jsfiddle.net/ro6hm2f1/5/)
 
 ## Prerequisites
 
@@ -33,32 +33,30 @@ Assumes FontAwesome is included.
 Place stylesheets and scripts on page.
 
 ```HTML
-<link rel="stylesheet" href="/css/init.css">
-<link rel="stylesheet" href="/css/config.css">
+<link href="/css/hc-map-leaflet.min.css" rel="stylesheet">
+<link href="/css/hc-map.css" rel="stylesheet">
 
-<script src="/js/init.js"></script>
-<script src="/js/config.js"></script>
+<script src="/js/leaflet.min.js"></script>
+<script src="/js/leaflet-locate.min.js"></script>
+<script src="/js/leaflet-esri.min.js"></script>
+<script src="/js/hc-map-config.js"></script>
 ```
 
 Place HTML on page.
 
 ```HTML
-<section class="container">
-	<div class="text-right" style="position: relative;">
-		<a id="map-overlays-trigger" data-toggle="collapse" data-parent="#accordion" href="#map-overlays" class="btn btn-sm btn-default">
-			<i class="fa fa-fw fa-map-marker"></i>
-			<span class="hidden-xs">Select</span> Map Overlays
-		</a>
-	</div>
-
-	<div id="container-map">
-		<div id="map-overlays" class="collapse">
-			<div id="layerListPane">
-				<div id="layerList"></div>
-			</div>
-		</div>
-
-		<div id="homeMap"></div>
-	</div>
+<section id="map-container">
+  <div id="btn-map-overlays" class="panel-group">
+    <div class="panel panel-default">
+      <a class="panel-heading" role="button" data-toggle="collapse" data-parent="#btn-map-overlays" href="#map-overlays" aria-expanded="true" aria-controls="map-overlays">
+        <i class="fa fa-chevron-down pull-right text-primary"></i>
+        <i class="fa fa-map-marker fa-fw"></i> Select Map Overlays
+      </a>
+      <div id="map-overlays" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div id="map-overlay-toggles" class=""></div>
+      </div>
+    </div>
+  </div>
+  <div id="home-map"></div>
 </section>
 ```
