@@ -4,7 +4,7 @@ Map featured on the County's Homepage.
 
 ## Demos
 
-[Demo](http://commbocc.github.io/esriTest/) | [jsFiddle](https://jsfiddle.net/ro6hm2f1/5/)
+[Demo](http://commbocc.github.io/esriTest/) | [jsFiddle](https://jsfiddle.net/ro6hm2f1/6/)
 
 ## Prerequisites
 
