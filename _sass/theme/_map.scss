@@ -1,0 +1,140 @@
+// @import "https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css";
+// @import "https://cdn.jsdelivr.net/leaflet/1.0.0-rc.1/leaflet.css";
+// @import "https://domoritz.github.io/leaflet-locatecontrol/dist/L.Control.Locate.min.css";
+
+#map-container {
+	position: relative;
+	height: 350px;
+}
+
+#home-map {
+	position: absolute;
+	top:0;
+	bottom:0;
+	width:100%;
+
+	.leaflet-top.leaflet-left {
+		@media (max-width: $screen-xs-max) {
+			bottom: 10px;
+			top: auto;
+		}
+	}
+
+	.leaflet-popup-content-wrapper, .leaflet-popup-content {
+		min-width: 300px;
+		padding: 0;
+		margin: 0;
+		border-radius: $border-radius-base;
+		a.btn {
+			color: $brand-primary;
+			&:hover { color: #fff; }
+		}
+	}
+
+	.leaflet-popup-close-button {
+		color: #fff;
+		top: 8px;
+		right: 5px;
+	}
+
+	.popover-title {
+		background: $brand-success;
+		color: #fff;
+		padding: 10px 40px 10px 10px;
+	}
+}
+
+#btn-map-overlays {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 500;
+	margin: 0 0;
+
+	@media (max-width: $screen-xs-max) {
+		left: 10px;
+	}
+
+	@media (min-width: $screen-sm-min) {
+		min-width: 310px;
+	}
+
+	.panel-heading {
+		display: block;
+		background: #fff;
+		text-decoration: none;
+		text-transform: uppercase;
+		font-weight: 600;
+		color: $link-color;
+	}
+}
+
+#map-overlay-toggles {
+
+	-webkit-column-count: 2; /* Chrome, Safari, Opera */
+	-moz-column-count: 2; /* Firefox */
+	column-count: 2;
+
+	-webkit-column-gap: 4px; /* Chrome, Safari, Opera */
+	-moz-column-gap: 4px; /* Firefox */
+	column-gap: 4px;
+
+	> a.map-overlay-toggle {
+		display: block;
+		background: #f4f7f8;
+		padding: 10px;
+		border-bottom: 2px solid #fff;
+		border-top: 2px solid #fff;
+		text-decoration: none;
+
+		&.active {
+			background-color: lighten($brand-info, 25%);
+		}
+
+		-webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
+		page-break-inside: avoid; /* Firefox */
+		break-inside: avoid; /* IE 10+ */
+	}
+}
+
+// map icons
+@mixin hc-map-icon($icon: '', $color: $brand-primary) {
+	background: $color;
+	box-shadow: 0 0 0 1px $color;
+	&::after {
+		content: $icon;
+	}
+}
+
+.hc-map-icon {
+	font-family: FontAwesome;
+	display: inline-block;
+	width: 30px !important;
+	height: 30px !important;
+	left: -10px;
+	border-radius: 50%;
+	text-align: center;
+	padding-top: 2px;
+	border: 1px solid #fff;
+	&::after {
+		font-size: 16px;
+		color: #fff;
+	}
+}
+
+.map-overlay-toggle {
+	.hc-map-icon {
+		padding-top: 4px;
+	}
+}
+
+.hc-map-icon-public-office { @include hc-map-icon('', #fd9407); }
+.hc-map-icon-collection-center { @include hc-map-icon('', #975ab9); }
+.hc-map-icon-senior-center { @include hc-map-icon('', #e34c84); }
+.hc-map-icon-park { @include hc-map-icon('', #9bd543); }
+.hc-map-icon-const-office { @include hc-map-icon('', #bbbcbe); }
+.hc-map-icon-fire-station { @include hc-map-icon('', #f0463c); }
+.hc-map-icon-library { @include hc-map-icon('', #1e95c0); }
+
+.hc-map-icon-road { @include hc-map-icon('', #a8a8a8); }
+.hc-map-icon-hospital { @include hc-map-icon('', #4f2d84); }
