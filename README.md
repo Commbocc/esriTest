@@ -61,7 +61,7 @@ Place HTML on page.
 
 ## Single Layer
 
-[Demo](http://commbocc.github.io/sitecore_designs/single-layer-map/) | [jsFiddle](https://jsfiddle.net/h4j3xk8L/)
+[Demo](http://commbocc.github.io/sitecore_designs/single-layer-map/) | [jsFiddle](https://jsfiddle.net/ne5144u9/1/)
 
 ### Single Layer Configuration
 
