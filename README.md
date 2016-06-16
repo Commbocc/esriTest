@@ -1,12 +1,6 @@
-# Hillsborough County Map
+# Hillsborough County Maps
 
-Map featured on the County's Homepage.
-
-## Demos
-
-[Demo](http://commbocc.github.io/esriTest/) | [jsFiddle](https://jsfiddle.net/ro6hm2f1/6/)
-
-## Prerequisites
+## *Prerequisites*
 
 Assumes jQuery is included.
 
@@ -28,9 +22,7 @@ Assumes FontAwesome is included.
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 ```
 
-## Configuration
-
-Place stylesheets and scripts on page.
+__Place stylesheets and scripts in layout.__
 
 ```HTML
 <link href="/css/hc-map-leaflet.min.css" rel="stylesheet">
@@ -41,6 +33,12 @@ Place stylesheets and scripts on page.
 <script src="/js/leaflet-esri.min.js"></script>
 <script src="/js/hc-map-config.js"></script>
 ```
+
+## Home
+
+[Demo](http://commbocc.github.io/sitecore_designs/layouts/home/) | [jsFiddle](https://jsfiddle.net/ev1rvsa5/1/)
+
+### Home Configuration
 
 Place HTML on page.
 
@@ -60,3 +58,39 @@ Place HTML on page.
   <div id="home-map"></div>
 </section>
 ```
+
+## Single Layer
+
+[Demo](http://commbocc.github.io/sitecore_designs/single-layer-map/) | [jsFiddle](https://jsfiddle.net/h4j3xk8L/)
+
+### Single Layer Configuration
+
+Place HTML on page.
+
+__Requires a unique id and an integer from the [Acceptable Layers](#acceptable-layers) list below in the layer data attribute__
+
+```HTML
+<div class="embed-responsive embed-responsive-16by9 thumbnail">
+	<div id="aUniqueIdentifier" class="hc-map" data-layer="2"></div>
+</div>
+```
+
+### Acceptable Layers
+
+* 0 - Clerk of Court Locations
+* 1 - Community Collection Centers
+* 2 - Community Resource Centers
+* 3 - Consumer Protection Offices
+* 4 - County Center
+* 5 - Fire Stations
+* 6 - Hillsborough County Sheriff Office Locations
+* 7 - Hospitals
+* 8 - Libraries
+* 9 - Parks
+* 10 - Pet Resource Center
+* 11 - Property Appraiser Locations
+* 12 - Customer Service Center for Public Utilities
+* 13 - Community Collection Centers
+* 14 - Supervisor of Elections Locations
+* 15 - Tax Collector Locations
+* 16 - Veterans Services Offices

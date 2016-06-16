@@ -1,31 +1,31 @@
 @charset "UTF-8";
-#map-container {
+#map-container, .map-container {
   position: relative;
   height: 350px; }
 
-#home-map {
+#home-map, .hc-map {
   position: absolute;
   top: 0;
   bottom: 0;
   width: 100%; }
   @media (max-width: 767px) {
-    #home-map .leaflet-top.leaflet-left {
+    #home-map .leaflet-top.leaflet-left, .hc-map .leaflet-top.leaflet-left {
       bottom: 10px;
       top: auto; } }
-  #home-map .leaflet-popup-content-wrapper, #home-map .leaflet-popup-content {
+  #home-map .leaflet-popup-content-wrapper, #home-map .leaflet-popup-content, .hc-map .leaflet-popup-content-wrapper, .hc-map .leaflet-popup-content {
     min-width: 300px;
     padding: 0;
     margin: 0;
     border-radius: 4px; }
-    #home-map .leaflet-popup-content-wrapper a.btn, #home-map .leaflet-popup-content a.btn {
+    #home-map .leaflet-popup-content-wrapper a.btn, #home-map .leaflet-popup-content a.btn, .hc-map .leaflet-popup-content-wrapper a.btn, .hc-map .leaflet-popup-content a.btn {
       color: #ff6f59; }
-      #home-map .leaflet-popup-content-wrapper a.btn:hover, #home-map .leaflet-popup-content a.btn:hover {
+      #home-map .leaflet-popup-content-wrapper a.btn:hover, #home-map .leaflet-popup-content a.btn:hover, .hc-map .leaflet-popup-content-wrapper a.btn:hover, .hc-map .leaflet-popup-content a.btn:hover {
         color: #fff; }
-  #home-map .leaflet-popup-close-button {
+  #home-map .leaflet-popup-close-button, .hc-map .leaflet-popup-close-button {
     color: #fff;
     top: 8px;
     right: 5px; }
-  #home-map .popover-title {
+  #home-map .popover-title, .hc-map .popover-title {
     background: #9bd63c;
     color: #fff;
     padding: 10px 40px 10px 10px; }
@@ -86,10 +86,14 @@
   border-radius: 50%;
   text-align: center;
   padding-top: 2px;
-  border: 1px solid #fff; }
+  border: 1px solid #fff;
+  background: #ff6f59;
+  box-shadow: 0 0 0 1px #ff6f59; }
   .hc-map-icon::after {
     font-size: 16px;
     color: #fff; }
+  .hc-map-icon::after {
+    content: ""; }
 
 .map-overlay-toggle .hc-map-icon {
   padding-top: 4px; }
