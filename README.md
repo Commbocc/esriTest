@@ -77,6 +77,8 @@ __Requires a unique id and an integer from the [Acceptable Layers](#acceptable-l
 
 ### Acceptable Layers
 
+[ESRI Map Service](https://maps.hillsboroughcounty.org/arcgis/rest/services/CoinMap/CountyWebsiteRedesignMap_20160609/MapServer)
+
 * 0 - Clerk of Court Locations
 * 1 - Community Collection Centers
 * 2 - Community Resource Centers
