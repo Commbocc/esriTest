@@ -112,6 +112,8 @@ __Requires [Geosearch files](#geosearch-files)__
 
 ```HTML
 <div class="embed-responsive embed-responsive-16by9 thumbnail">
-	<div id="geoSearch" class="hc-map hc-map-geo" data-address="14916 Knotty Pine Place, Tampa, Fl 33624"></div>
+	<div id="geoSearch" class="hc-map hc-map-geo" data-name="County Center" data-address="601 E Kennedy Blvd, Tampa, FL 33602"></div>
 </div>
 ```
+
+The map will generate a marker at the address in the *address* data attribute. Once the marker is clicked the popup title will take the *name* attribute.

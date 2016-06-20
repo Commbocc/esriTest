@@ -1,5 +1,5 @@
 (function() {
-  var addLayerToMapAndMapOverlaysPanel, defaultPopupTemplate, setGeoMarker, toggleScrollWheel;
+  var addLayerToMapAndMapOverlaysPanel, defaultPopupTemplate, geoPopupTemplate, setGeoMarker, toggleScrollWheel;
 
   $(function() {
     var map_service;
@@ -124,7 +124,7 @@
     return $('.hc-map-geo').each(function() {
       var map;
       map = $(this).initHcMap();
-      setGeoMarker($(this).data('address'), map);
+      setGeoMarker($(this).data('name'), $(this).data('address'), map);
     });
   });
 
@@ -135,6 +135,14 @@
     if (properties.WEB_URL !== null && properties.WEB_URL !== '') {
       out += "<p>\n	<a href=\"{WEB_URL}\" class=\"btn btn-secondary btn-sm btn-block\">Learn More</a>\n</p>";
     }
+    out += "</div>";
+    return out;
+  };
+
+  geoPopupTemplate = function(title, address) {
+    var directions_str, out;
+    directions_str = [address].join('+').replace(/[^0-9a-z]/gi, '+').replace(' ', '+');
+    out = "<h4 class=\"popover-title\">" + title + "</h4>\n<div class=\"popover-content\">\n	<p>" + address + "<br>\n<a href=\"https://www.google.com/maps/dir//" + directions_str + "\" target=\"_blank\" class=\"small pull-right\">Directions</a>\n</p>";
     out += "</div>";
     return out;
   };
@@ -172,18 +180,19 @@
     });
   };
 
-  setGeoMarker = function(searchStr, map) {
+  setGeoMarker = function(title, searchStr, map) {
     var client, json_url;
     client = new L.GeoSearch.Provider.Esri();
     json_url = client.GetServiceUrl(searchStr);
     $.get(json_url, function(data) {
-      var coordinates;
+      var coordinates, marker;
       coordinates = client.ParseJSON(data)[0];
-      L.marker([coordinates.Y, coordinates.X], {
+      marker = L.marker([coordinates.Y, coordinates.X], {
         icon: L.divIcon({
           className: 'hc-map-icon'
         })
       }).addTo(map);
+      marker.bindPopup(geoPopupTemplate(title, searchStr));
       map.fitBounds([[coordinates.Y, coordinates.X]]);
     }, 'json');
   };
