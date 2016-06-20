@@ -34,6 +34,13 @@ __Place stylesheets and scripts in layout.__
 <script src="/js/hc-map-config.js"></script>
 ```
 
+### Geosearch files
+
+```HTML
+<script src="/js/leaflet-geosearch.min.js"></script>
+<script src="/js/leaflet-geosearch-esri.min.js"></script>
+```
+
 ## Home
 
 [Demo](http://commbocc.github.io/sitecore_designs/layouts/home/) | [jsFiddle](https://jsfiddle.net/ev1rvsa5/1/)
@@ -61,7 +68,7 @@ Place HTML on page.
 
 ## Single Layer
 
-[Demo](http://commbocc.github.io/sitecore_designs/single-layer-map/) | [jsFiddle](https://jsfiddle.net/ne5144u9/1/)
+[Demo](http://commbocc.github.io/sitecore_designs/maps/single-layer/) | [jsFiddle](https://jsfiddle.net/ne5144u9/1/)
 
 ### Single Layer Configuration
 
@@ -96,3 +103,13 @@ __Requires a unique id and an integer from the [Acceptable Layers](#acceptable-l
 * 14 - Supervisor of Elections Locations
 * 15 - Tax Collector Locations
 * 16 - Veterans Services Offices
+
+## Geosearch
+
+__Requires [Geosearch files](#geosearch-files)__
+
+```HTML
+<div class="embed-responsive embed-responsive-16by9 thumbnail">
+	<div id="geoSearch" class="hc-map hc-map-geo" data-address="14916 Knotty Pine Place, Tampa, Fl 33624"></div>
+</div>
+```

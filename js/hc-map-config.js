@@ -1,5 +1,5 @@
 (function() {
-  var addLayerToMapAndMapOverlaysPanel, defaultPopupTemplate, toggleScrollWheel;
+  var addLayerToMapAndMapOverlaysPanel, defaultPopupTemplate, setGeoMarker, toggleScrollWheel;
 
   $(function() {
     var map_service;
@@ -91,7 +91,7 @@
         addLayerToMapAndMapOverlaysPanel(map, layer_group, layer);
       });
     });
-    return $('.hc-map').each(function() {
+    $('.hc-map-layer').each(function() {
       var layer, map;
       map = $(this).initHcMap();
       if (!($(this).data('layer') === void 0 || $(this).data('layer') === '')) {
@@ -120,6 +120,11 @@
         });
         map.addLayer(layer);
       }
+    });
+    return $('.hc-map-geo').each(function() {
+      var map;
+      map = $(this).initHcMap();
+      setGeoMarker($(this).data('address'), map);
     });
   });
 
@@ -165,6 +170,22 @@
         $(this).addClass('active');
       }
     });
+  };
+
+  setGeoMarker = function(searchStr, map) {
+    var client, json_url;
+    client = new L.GeoSearch.Provider.Esri();
+    json_url = client.GetServiceUrl(searchStr);
+    $.get(json_url, function(data) {
+      var coordinates;
+      coordinates = client.ParseJSON(data)[0];
+      L.marker([coordinates.Y, coordinates.X], {
+        icon: L.divIcon({
+          className: 'hc-map-icon'
+        })
+      }).addTo(map);
+      map.fitBounds([[coordinates.Y, coordinates.X]]);
+    }, 'json');
   };
 
 }).call(this);
