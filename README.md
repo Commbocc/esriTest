@@ -106,6 +106,8 @@ __Requires a unique id and an integer from the [Acceptable Layers](#acceptable-l
 
 ## Geosearch
 
+[Demo](http://commbocc.github.io/sitecore_designs/maps/geosearch/) | [jsFiddle](https://jsfiddle.net/eb5fyneb/1/)
+
 __Requires [Geosearch files](#geosearch-files)__
 
 ```HTML
